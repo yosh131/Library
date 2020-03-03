@@ -10,15 +10,14 @@ class UnionFind:
         if self.par[x] == x:
             return x
         else:
-            self.par[x] = self.find(self.par[x])
-            # node = [x]
-            # cur = node[0]
-            # while self.par[cur] != cur:
-            #     cur = self.par[cur]
-            #     node.append(self.par[cur])
+            node = [x]
+            cur = node[0]
+            while self.par[cur] != cur:
+                cur = self.par[cur]
+                node.append(self.par[cur])
             
-            # for n in node:
-            #     self.par[n] = cur
+            for n in node:
+                self.par[n] = cur
             
             return self.par[x]
 
