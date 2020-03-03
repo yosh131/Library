@@ -10,14 +10,15 @@ class UnionFind:
         if self.par[x] == x:
             return x
         else:
-            node = [x]
-            cur = node[0]
-            while self.par[cur] != cur:
-                cur = self.par[cur]
-                node.append(self.par[cur])
+            self.par[x] = self.find(self.par[x])
+            # node = [x]
+            # cur = node[0]
+            # while self.par[cur] != cur:
+            #     cur = self.par[cur]
+            #     node.append(self.par[cur])
             
-            for n in node:
-                self.par[n] = cur
+            # for n in node:
+            #     self.par[n] = cur
             
             return self.par[x]
 
@@ -73,10 +74,13 @@ class UnionFind:
     
     # 各グループ毎の要素リストを取得
     def all_members(self):
+        L = len(self.par)
         roots = self.get_roots()
-        namedict = {}
+        namedict = [0]*L
         for i,r in enumerate(roots):
-            namedict[r] = i            
+            namedict[r] = i
+        
+        
         ret = [[] for _ in range(len(roots))]
         for i in range(len(self.par)):
             p = namedict[self.find(i)]
@@ -107,7 +111,7 @@ for a,b in AB:
     ans[b-1] -= 1
  
 for c,d in CD:
-    if uf.same(c-1,d-1):
+    if uf.same_check(c-1,d-1):
         ans[c-1] -= 1
         ans[d-1] -= 1
  
