@@ -1,2 +1,2 @@
 # Library
-my library about competitive programming 
+library about competitive programming 
